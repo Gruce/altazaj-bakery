@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Generate src/data/menu.json from the FineDine Excel export.
+Generate db/seed/menu.json from the FineDine Excel export (then `npm run db:seed`).
 
 Usage:
     python3 scripts/generate-menu.py [path/to/export.xlsx]
@@ -289,9 +289,10 @@ out={
     "items":items,
 }
 
-dst = os.path.join(ROOT, "src", "data", "menu.json")
+dst = os.path.join(ROOT, "db", "seed", "menu.json")
 os.makedirs(os.path.dirname(dst), exist_ok=True)
 json.dump(out, open(dst, "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
+print(f"Wrote {dst} — run `npm run db:seed` to load it into SQLite.")
 
 # Coverage report
 ar_left=set()
